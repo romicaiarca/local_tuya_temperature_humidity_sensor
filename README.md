@@ -1,0 +1,1 @@
+# local_tuya_temperature_humidity_sensor

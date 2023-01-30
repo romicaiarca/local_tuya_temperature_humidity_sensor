@@ -64,7 +64,7 @@ class THSHumidity(SensorEntity):
             _LOGGER.error(f"Exception: THSHumidity {self.name} {ex}")
 
         if data is None or not all(data.values()):
-            _LOGGER.debug(f"THSHumidity {self,name} no data received. {data}")
+            _LOGGER.debug(f"THSHumidity {self.name} no data received. {data}")
             return -1
 
         if "Error" in data:

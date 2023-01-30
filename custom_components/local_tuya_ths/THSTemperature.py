@@ -64,7 +64,7 @@ class THSTemperature(SensorEntity):
             _LOGGER.error(f"Exception: THSTemperature {self.name} {ex}")
 
         if data is None or not all(data.values()):
-            _LOGGER.debug(f"THSTemperature {self,name} no data received. {data}")
+            _LOGGER.debug(f"THSTemperature {self.name} no data received. {data}")
             return -1
 
         if "Error" in data:

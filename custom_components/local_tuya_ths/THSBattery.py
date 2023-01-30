@@ -59,12 +59,12 @@ class THSBattery(SensorEntity):
 
         try:
             data = self._tiny_tuya_device.status()
-            _LOGGER.debug(f"THSHumidity {self.name} status {data}")
+            _LOGGER.debug(f"THSBattery {self.name} status {data}")
         except Exception as ex:
-            _LOGGER.error(f"Exception: THSHumidity {self.name} {ex}")
+            _LOGGER.error(f"Exception: THSBattery {self.name} {ex}")
 
         if data is None or not all(data.values()):
-            _LOGGER.debug(f"THSHumidity {self.name} no data received. {data}")
+            _LOGGER.debug(f"THSBattery {self.name} no data received. {data}")
             return -1
 
         if "Error" in data:

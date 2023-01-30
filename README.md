@@ -26,7 +26,7 @@ sensor:
           local_key: "a4c1...56c4" # it is shown as node_id in tuya iot platform
           name: "THS name 2"
           type: "wsdcg" # type of the sensor https://eu.iot.tuya.com/cloud/device/detail/?id={id}}&sourceId={sourceId}&sourceType={sourceType}&region={region}&deviceKey=basicInfo&deviceId={deviceId}
-        - device_id: "bf25...ygxv" # THS_OFFICE_WALL_2
+        - device_id: "bf25...ygxv"
           local_key: "a4c1...625b" # it is shown as node_id in tuya iot platform
           name: "THS name 3"
           type: "wsdcg" # type of the sensor https://eu.iot.tuya.com/cloud/device/detail/?id={id}}&sourceId={sourceId}&sourceType={sourceType}&region={region}&deviceKey=basicInfo&deviceId={deviceId}

@@ -15,7 +15,9 @@ class SilverCrestGateway():
         self.ip_address = gw_ip_address
         self.hass = hass
         self.name = "Silver Crest Gateway"
-
+        self.supported_dps = ['temperature', 'humidity', 'battery_percentage']
+        self.data = {}
+        self._cached_state = {}
         self.gw = tinytuya.Device(
             gw_device_id,
             address=self.ip_address,
@@ -23,11 +25,7 @@ class SilverCrestGateway():
             persist=True,
             version=_VERSION
         )
-
-        self.supported_dps = ['temperature', 'humidity', 'battery_percentage']
         self.ip_address = self.gw.address
-        self.data = {}
-        self._cached_state = {}
 
     @property
     def get_gw(self) -> tinytuya.Device:

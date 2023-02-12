@@ -18,6 +18,7 @@ from .TemperatureHumiditySensor import TemperatureHumiditySensor
 from .THSBattery import THSBattery
 from .THSHumidity import THSHumidity
 from .THSTemperature import THSTemperature
+from .THSensor import THSensor
 import voluptuous as vol
 
 _LOGGER = logging.getLogger(__name__)
@@ -63,11 +64,6 @@ async def async_setup_platform(
     entities = []
 
     for sensorEntity in sensorsEntities:
-        THSensors.append(TemperatureHumiditySensor(gw.get_gw, sensorEntity))
+        THSensors.append(THSensor(sensorEntity, hass, gw.get_gw))
 
-    for THSensor in THSensors:
-        entities.append(THSTemperature(hass, THSensor))
-        entities.append(THSHumidity(hass, THSensor))
-        entities.append(THSBattery(hass, THSensor))
-
-    async_add_entities(entities, True)
+    async_add_entities(THSensors, True)

@@ -27,6 +27,11 @@ class THSBattery(SensorEntity):
         self._attr_device_class = SensorDeviceClass.BATTERY
         self._attr_native_value = 0
         self.entity_id = (f"sensor.local_tuya_ths_{self._name}").replace(" ", "_")
+        
+        if self._hass.states.get(self.entity_id) is not None and self._attr_native_value == 0:
+            self._attr_native_value = self._hass.states.get(self.entity_id)
+            
+        # self._hass.states.set(self.entity_id, self._attr_native_value)
 
     async def async_update(self) -> None:
         """Fetch new state data for the sensor.
@@ -43,7 +48,7 @@ class THSBattery(SensorEntity):
     @property
     def unique_id(self):
         """Return the unique id for this device (the dev_id)."""
-        return (f"{self._device_id} battery")
+        return (f"{self._device_id}_battery")
 
     @property
     def device_info(self):
@@ -61,7 +66,8 @@ class THSBattery(SensorEntity):
             data = self._tiny_tuya_device.status()
             _LOGGER.debug(f"THSBattery {self.name} status {data}")
         except Exception as ex:
-            _LOGGER.error(f"Exception: THSBattery {self.name} {ex}")
+            _LOGGER.warning(f"Exception catched: THSBattery {self.name} {ex}")
+            return -1
 
         if data is None or not all(data.values()):
             _LOGGER.debug(f"THSBattery {self.name} no data received. {data}")
@@ -74,5 +80,6 @@ class THSBattery(SensorEntity):
         if data and 'dps' in data and "4" in data['dps']:
             _LOGGER.debug(int(data['dps']["4"]))
             self._attr_native_value = (int(data['dps']["4"]))
+            self._hass.states.set(self.entity_id, self._attr_native_value)
 
         return data

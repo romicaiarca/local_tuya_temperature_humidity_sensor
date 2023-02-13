@@ -1,6 +1,5 @@
 from homeassistant.const import TEMP_CELSIUS
 import logging
-from .TemperatureHumiditySensor import TemperatureHumiditySensor
 from homeassistant.helpers.entity import Entity
 from homeassistant.components.sensor import SensorEntity
 import tinytuya
